@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Registration Form</h5>
+          <form action="#" #registrationForm="ngForm" (ngSubmit)="submit(registrationForm)" class="form-signin">
+            <mat-form-field class="example-full-width">
+              <input matInput ngModel #usernameFormControl="ngModel" required  minlength="4" name="usernameFormControl" required placeholder="Username" (change)="log(userName)">
+              <mat-error *ngIf="usernameFormControl.errors?.required">Username is required</mat-error>
+              <mat-error *ngIf="usernameFormControl.errors?.minlength">First name should consist minimum {{usernameFormControl.errors.minlength.requiredLength}} letters</mat-error>
+            </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <input 
+                          ngModel 
+                          matInput 
+                          #emailFormControl="ngModel"
+                          placeholder="Email address" 
+                          name="emailFormControl" 
+                          required email>
+                  <mat-error>Email is required</mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input
+                          ngModel
+                          #dobPicker="ngModel"
+                          name="dobPicker"
+                          (focus)="picker.open()" 
+                          matInput 
+                          [matDatepicker]="picker" 
+                          placeholder="DOB"
+                          required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker touchUi="false"></mat-datepicker>
+                    <mat-error>DOB is required</mat-error>
+                </mat-form-field>
+                <button color="primary" mat-raised-button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"  [disabled]="!registrationForm.valid">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
